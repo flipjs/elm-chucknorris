@@ -33,7 +33,7 @@ subscriptions model =
 
 init : ( Model, Cmd Msg )
 init =
-    ( initialModel, randomJoke )
+    initialModel ! [ randomJoke ]
 
 
 initialModel : Model
@@ -77,13 +77,13 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Joke joke ->
-            ( joke, Cmd.none )
+            joke ! []
 
         Fail error ->
-            ( toString error, Cmd.none )
+            toString error ! []
 
         FetchJoke ->
-            ( model, randomJoke )
+            model ! [ randomJoke ]
 
 
 
